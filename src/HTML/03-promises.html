@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promises</title>
+  </head>
+  <body>
+    <style>
+      form {
+        display: flex;
+        gap: 20px;
+      }
+      input {
+        display: flex;
+        text-align: center;
+      }
+      a {
+        display: block;
+        margin-bottom: 50px;
+      }
+    </style>
+    <a href="/src/index.html">На ГОЛОВНУ</a>
+    <form class="form">
+      <label>
+        First delay (ms)
+        <input type="number" name="delay" required />
+      </label>
+      <label>
+        Delay step (ms)
+        <input type="number" name="step" required />
+      </label>
+      <label>
+        Amount
+        <input type="number" name="amount" required />
+      </label>
+      <button type="submit">Create promises</button>
+    </form>
+    <script src="/src/JS/03-promises.js" type="module"></script>
+  </body>
+</html>
