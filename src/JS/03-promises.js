@@ -11,7 +11,8 @@ function onFormSubmit(event) {
   let amountInput = Number(event.currentTarget.elements.amount.value); 
 
   for (let i = 1; i <= amountInput; i += 1) {
-    createPromise(i, delayInput)
+    if (delayInput > 0 && stepInput > 0 && amountInput >= 0) {
+      createPromise(i, delayInput)
       .then(({ position, delay }) => {
         Notiflix.Notify.success(
           `✅ Fulfilled promise ${position} in ${delay}ms`
@@ -24,6 +25,12 @@ function onFormSubmit(event) {
       });
 
     delayInput += stepInput;
+
+    } else {
+         Notiflix.Notify.failure(
+          `❌ Enter a value greater than zero`
+        );
+    }
   }
 };
 
