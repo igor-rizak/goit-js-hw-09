@@ -11,7 +11,7 @@ function onFormSubmit(event) {
   let amountInput = Number(event.currentTarget.elements.amount.value); 
 
   for (let i = 1; i <= amountInput; i += 1) {
-    if (delayInput > 0 && stepInput > 0 && amountInput >= 0) {
+
       createPromise(i, delayInput)
       .then(({ position, delay }) => {
         Notiflix.Notify.success(
@@ -26,16 +26,14 @@ function onFormSubmit(event) {
 
     delayInput += stepInput;
 
-    } else {
-         Notiflix.Notify.failure(
-          `❌ Enter a value greater than zero`
-        );
+
     }
   }
-};
+
 
 function createPromise(position, delay) {
-  return new Promise((resolve, reject) => {
+    if (delayInput > 0 && stepInput > 0 && amountInput >= 0) {
+      return new Promise((resolve, reject) => {
     setTimeout(() => {
       const shouldResolve = Math.random() > 0.3;
       if (shouldResolve) {
@@ -44,7 +42,8 @@ function createPromise(position, delay) {
         reject({ position, delay });
       }
     }, delay);
-  });
-}
-
-
+  })
+    } else {
+         Notiflix.Notify.failure(`❌ Enter a value greater than zero`)
+  }
+  }
