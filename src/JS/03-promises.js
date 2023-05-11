@@ -20,7 +20,7 @@ function onFormSubmit(event) {
       })
       .catch(({ position, delay }) => {
         Notiflix.Notify.failure(
-          `❌ Rejected promise ${position} in ${delay}ms`
+          `❌ Rejected promise ${position} in ${delay}ms` 
         );
       });
 
