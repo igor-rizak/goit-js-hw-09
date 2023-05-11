@@ -12,7 +12,7 @@ const refs = {
     seconds: document.querySelector("span[data-seconds]"),
 }
 
-console.log(refs.dateTimeInput)
+// console.log(refs.dateTimeInput)
 
 const CURRENT_DATE = new Date();
 let SELECTED_DATE = new Date();
@@ -84,3 +84,4 @@ function clockView(dateOffset) {
 function addLeadingZero(value) {
     return String(value).padStart(2, "0");
 };
+

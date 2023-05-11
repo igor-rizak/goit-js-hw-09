@@ -1,7 +1,8 @@
 import Notiflix from 'notiflix';
 
 const form = document.querySelector('.form');
-form.addEventListener('submit', onFormSubmit)
+form.addEventListener('submit', onFormSubmit);
+
 
 function onFormSubmit(event) {
   event.preventDefault();
@@ -10,8 +11,12 @@ function onFormSubmit(event) {
   let stepInput = Number(event.currentTarget.elements.step.value);
   let amountInput = Number(event.currentTarget.elements.amount.value); 
 
-  for (let i = 1; i <= amountInput; i += 1) {
-
+  
+  if (delayInput < 0 || stepInput < 0 || amountInput <= 0) {
+      Notiflix.Notify.failure(`❌ Enter a value greater than zero`) 
+      console.log('message')
+  } else {
+      for (let i = 1; i <= amountInput; i += 1) {
       createPromise(i, delayInput)
       .then(({ position, delay }) => {
         Notiflix.Notify.success(
@@ -23,17 +28,12 @@ function onFormSubmit(event) {
           `❌ Rejected promise ${position} in ${delay}ms` 
         );
       });
-
-    delayInput += stepInput;
-
-
-    }
+          delayInput += stepInput}
+  }
   }
 
-
 function createPromise(position, delay) {
-    if (delayInput > 0 && stepInput > 0 && amountInput >= 0) {
-      return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
     setTimeout(() => {
       const shouldResolve = Math.random() > 0.3;
       if (shouldResolve) {
@@ -43,7 +43,7 @@ function createPromise(position, delay) {
       }
     }, delay);
   })
-    } else {
-         Notiflix.Notify.failure(`❌ Enter a value greater than zero`)
-  }
-  }
+
+}
+  
+
